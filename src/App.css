@@ -1,31 +1,44 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 body {
-  background-color: #F6F6EF;
+  justify-content: center;
+}
+
+a.info:hover {
+  color: #696960;
+  text-decoration: underline;
+}
+
+a.titleURL:hover {
+  color: #828282;
+  text-decoration: underline;
 }
 
 header {
   background-color:#FF742B;
   padding: 15px;
-  width: 100%;
+  width: auto;
 }
 
 div {
-  padding: 2rem;
   margin: 0px;
   text-align: left;
+  background-color: #F6F6EF;
+  display: inline-block;
 }
 
 
 .articles  {
-  gap: 10px;
   list-style: none;
   justify-content: center;
-  font-family: sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 .title {
   display: inline;
-  font-weight: 1000;
+  font-weight: 500;
   font-size: 18px;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .titleURL {
@@ -33,6 +46,13 @@ div {
 }
 
 .info {
-  color: #696969
+  color: #696969;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+
+}
+
+li {
+  margin-bottom: 10px;
 }
 
