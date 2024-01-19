@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background-color: orange;
+  background-color:#FF742B;
   padding: 15px;
   width: 100%;
 }
@@ -22,19 +22,17 @@ div {
   justify-content: center;
   font-family: sans-serif;
 }
-
-p {
+.title {
   display: inline;
-  font-size: 15px;
-  color: gray;
-}
-
-.gray {
-  color: gray;
-}
-
-h2 {
-  display: inline;
-  font-weight: 500;
+  font-weight: 1000;
   font-size: 18px;
 }
+
+.titleURL {
+  color: #828282;
+}
+
+.info {
+  color: #696969
+}
+

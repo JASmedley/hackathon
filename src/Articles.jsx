@@ -34,7 +34,7 @@ class Articles extends React.Component {
     return (
       <ul className="articles">
         {this.state.ListArticles.map((article, index) => {
-         return <Article title={article.title} url={article.url} points={article.points} author = {article._highlightResult.author.value} created={article.created_at} comments={article.num_comments} />
+         return <Article title={article.title} url={article.url} points={article.points} author = {article._highlightResult.author.value} created={article.created_at} comments={article.num_comments} storyID={article.story_id}/>
         })}
       </ul>
     );
