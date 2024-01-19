@@ -1,10 +1,22 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
 body {
   justify-content: center;
 }
 
+a.title {
+  color: black;
+  display: inline;
+  font-size: 18px;
+  font-family: 'Noto Sans JP', sans-serif ;
+  font-optical-sizing: auto;
+  font-weight: 450;
+}
+
+a.title:hover {
+  color: black;
+}
 a.info:hover {
   color: #696960;
   text-decoration: underline;
@@ -32,12 +44,6 @@ div {
 .articles  {
   list-style: none;
   justify-content: center;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-.title {
-  display: inline;
-  font-weight: 500;
-  font-size: 18px;
   font-family: 'Noto Sans JP', sans-serif;
 }
 

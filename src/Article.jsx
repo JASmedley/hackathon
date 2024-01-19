@@ -9,13 +9,13 @@ function Article(props) {
   return (
 
     <li  className="articles"> 
-        <h2 className="title">{props.title}</h2>
+        <a href={props.url} className="title">{props.title}</a>
         <a href={props.url} target="_blank" class = "titleURL"> ( {props.url} )</a>
         <br></br>
-        <a href={commentURL} target="_blank" class="info">{props.points} points | </a>
-        <a href={authorURL} target="_blank" class="info"> {props.author} | </a>
-        <a href={commentURL} target="_blank" class="info"> {props.created} | </a>
-        <a href={commentURL} target="_blank" class="info"> {props.comments} comments</a>
+        <a href={commentURL} target="_self" class="info">{props.points} points | </a>
+        <a href={authorURL} target="_self" class="info"> {props.author} | </a>
+        <a href={commentURL} target="_self" class="info"> {props.created} | </a>
+        <a href={commentURL} target="_self" class="info"> {props.comments} comments</a>
   </li>
   );
 }
