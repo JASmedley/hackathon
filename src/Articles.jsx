@@ -32,7 +32,7 @@ class Articles extends React.Component {
   render() {
     console.log('In render');
     return (
-      <ul className="articles">
+      <ul className="SearchResults">
         {this.state.ListArticles.map((article, index) => {
          return <Article title={article.title} url={article.url} points={article.points} author = {article._highlightResult.author.value} created={article.created_at} comments={article.num_comments} storyID={article.story_id}/>
         })}

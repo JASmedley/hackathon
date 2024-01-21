@@ -1,25 +1,162 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap');
 
 body {
+  display: block;
   justify-content: center;
+  margin: 0;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  margin: 0px;
+  text-align: left;
+  display: block;
+  width: 100%;
+
+}
+
+header {
+  display: block;
+}
+
+.SearchHeader {
+  width: 100%;
+  display: flex;
+  height: 5%;
+  align-items: center;
+  background:#FF742B;
+  position: relative;
+  justify-content: space-between;
+}
+.logo {
+  margin: 1%;
+}
+.search_icon {
+  border: white solid 5px;
+  height: 34px;
+}
+
+form {
+  display: flex;
+  position: relative;
+  width: calc(100% - 240px);
+
+}
+
+.searchBox {
+  font-size: 16px;
+  font-family: 'Noto Sans JP', sans-serif ;
+  width: 100%;
+  height: 42px;
+  border: none;
+}
+
+.searchBox:focus-visible {
+  outline: none;
+}
+
+.settings_icon {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.SearchFilters {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 0 8px;
+  background-color: #F6F6EF;
+}
+
+.SearchFilters_filters {
+  display: flex;
+  align-items: center;
+}
+
+.SearchFilters_filterContainer {
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif ;
+  display: flex;
+  align-items: center;
+}
+
+.SearchFilters .Dropdown {
+  margin-left: 4px;
+}
+
+.Dropdown {
+  font-size: 16px;
+  font-family: 'Noto Sans JP', sans-serif ;
+  color: #696969;
+  position: relative;
+}
+
+.SearchFilters_meta {
+  padding-right: 10%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'Noto Sans JP', sans-serif ;
+}
+
+.SearchFilters_meta p {
+  margin: 0
+}
+
+.SearchFilters_engineProcessingTime {
+
+
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.SearchResults {
+  position: relative;
+  background: #F6F6EF;
+  display: block;
+  margin: 0px;
+}
+
+.articles  {
+  list-style: none;
+  justify-content: center;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #F6F6EF;
+
 }
 
 a.title {
   color: black;
   display: inline;
-  font-size: 18px;
+  font-size: 14px;
   font-family: 'Noto Sans JP', sans-serif ;
-  font-optical-sizing: auto;
-  font-weight: 450;
+  text-decoration: none;
+  line-height: 1;
 }
 
 a.title:hover {
   color: black;
 }
-a.info:hover {
-  color: #696960;
-  text-decoration: underline;
+
+.titleURL {
+  color: #828282;
+  text-decoration: none;
+  font-size: 14px;
+
+
 }
 
 a.titleURL:hover {
@@ -27,38 +164,26 @@ a.titleURL:hover {
   text-decoration: underline;
 }
 
-header {
-  background-color:#FF742B;
-  padding: 15px;
-  width: auto;
-}
-
-div {
-  margin: 0px;
-  text-align: left;
-  background-color: #F6F6EF;
-  display: inline-block;
-}
-
-
-.articles  {
-  list-style: none;
-  justify-content: center;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-
-.titleURL {
-  color: #828282;
-}
-
 .info {
   color: #696969;
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 14px;
-
+  font-size: 11px;
+  text-decoration: none;
 }
 
-li {
-  margin-bottom: 10px;
+a.info:hover {
+  color: #696960;
+  text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
+
+
 
