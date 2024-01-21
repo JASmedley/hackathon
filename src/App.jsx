@@ -13,14 +13,14 @@ export default class App extends React.Component {
     return (
     <div className='container'>
       <header className="SearchHeader">
-        <a className="logo" href="https://news.ycombinator.com/">
+        <a className="logo" href="https://news.ycombinator.com/" target="_self">
         <img src="../logo.png" ></img>
         </a>
         <form>
         <img className="search_icon" src="../search_icon.png" ></img>
         <input className='searchBox' type="text"  placeholder="Search stories by title, url or author"></input>
         </form>
-        <a href="https://hn.algolia.com/settings">
+        <a href="https://hn.algolia.com/settings" target="_self">
         <img  className="settings_icon" src="../settings_icon.png" ></img>
         </a>
       </header>
