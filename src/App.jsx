@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import './App.css';
+import ListArticles from './ListArticles.jsx'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default class App extends React.Component {
+  constructor(props) {
+    console.log('In constructor');
+    super(props);
+    this.state = {
+      value: '',
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+  
+
+  handleChange(event) {
+    this.setState({searchbar: event.target.value});
+  }
+
+
+  handleSubmit(event) {
+    console.log('SearchText: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  // 1. Look up component lifecycle methods - use onChange instead of onKeyUp
+  // 2. capture user inputs in state 
+  // 3. Fire off fetch in useEffect everytime state updates 
+  // 4. Replicate the thing you're doing with the comment URL (dynamic URL needs to be connected to state)
+
+  render() {
+    console.log('In render');
+    return (
+    <div className='container'>
+      <header className="SearchHeader">
+        <a className="logo" href="https://news.ycombinator.com/" target="_self">
+        <img src="../logo.png" ></img>
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <form value={this.state.value}>
+        <img className="search_icon" src="../search_icon.png" ></img>
+        <input className='searchBox' type="text"  placeholder="Search stories by title, url or author" onKeyUp={this.handleSubmit} onChange={this.handleChange}></input>
+    {/* Only need to filter in searchbox by title */}
+        </form>
+        <a href="https://hn.algolia.com/settings" target="_self">
+        <img  className="settings_icon" src="../settings_icon.png" ></img>
         </a>
+      </header>
+      <div className="SearchFilters">
+        <div className="SearchFilters_filters">
+          <span className="SearchFilters_filterContainer"> 
+            <span className="SearchFilters_text">Search </span>
+            <div className="Dropdown"> DATE / AUTHOR / TITLE </div>
+          </span>
+        </div>
+        <div className="SearchFilters_meta">
+        <p className="SearchFilters_engineProcessingTime"> PLACEHOLDER </p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <ListArticles/>
+    </div>
+    );
+  }
 }
-
-export default App
