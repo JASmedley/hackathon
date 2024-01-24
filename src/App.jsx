@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Articles from './Articles.jsx'
+import ListArticles from './ListArticles.jsx'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,6 +12,8 @@ export default class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  
 
   handleChange(event) {
     this.setState({searchbar: event.target.value});
@@ -56,7 +58,7 @@ export default class App extends React.Component {
         <p className="SearchFilters_engineProcessingTime"> PLACEHOLDER </p>
       </div>
       </div>
-      <Articles/>
+      <ListArticles/>
     </div>
     );
   }

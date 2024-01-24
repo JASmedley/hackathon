@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-function Article(props) {
+function DisplayArticleCard(props) {
 
   const commentURL ='https://news.ycombinator.com/item?id='+props.storyID
   const authorURL = 'https://news.ycombinator.com/user?id='+props.author
@@ -24,4 +24,4 @@ function Article(props) {
   );
 }
 
-export default Article;
+export default DisplayArticleCard;
