@@ -6,7 +6,27 @@ export default class App extends React.Component {
   constructor(props) {
     console.log('In constructor');
     super(props);
+    this.state = {
+      value: '',
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleChange(event) {
+    this.setState({searchbar: event.target.value});
+  }
+
+
+  handleSubmit(event) {
+    console.log('SearchText: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  // 1. Look up component lifecycle methods - use onChange instead of onKeyUp
+  // 2. capture user inputs in state 
+  // 3. Fire off fetch in useEffect everytime state updates 
+  // 4. Replicate the thing you're doing with the comment URL (dynamic URL needs to be connected to state)
 
   render() {
     console.log('In render');
@@ -16,9 +36,10 @@ export default class App extends React.Component {
         <a className="logo" href="https://news.ycombinator.com/" target="_self">
         <img src="../logo.png" ></img>
         </a>
-        <form>
+        <form value={this.state.value}>
         <img className="search_icon" src="../search_icon.png" ></img>
-        <input className='searchBox' type="text"  placeholder="Search stories by title, url or author"></input>
+        <input className='searchBox' type="text"  placeholder="Search stories by title, url or author" onKeyUp={this.handleSubmit} onChange={this.handleChange}></input>
+    {/* Only need to filter in searchbox by title */}
         </form>
         <a href="https://hn.algolia.com/settings" target="_self">
         <img  className="settings_icon" src="../settings_icon.png" ></img>
@@ -28,15 +49,7 @@ export default class App extends React.Component {
         <div className="SearchFilters_filters">
           <span className="SearchFilters_filterContainer"> 
             <span className="SearchFilters_text">Search </span>
-            <div className="Dropdown"> PLACEHOLDER </div>
-          </span>
-          <span className="SearchFilters_filterContainer"> 
-            <span className="SearchFilters_text"> by </span>
-            <div className="Dropdown"> PLACEHOLDER </div>
-          </span>
-          <span className="SearchFilters_filterContainer"> 
-            <span className="SearchFilters_text"> for </span>
-            <div className="Dropdown"> PLACEHOLDER </div>
+            <div className="Dropdown"> DATE / AUTHOR / TITLE </div>
           </span>
         </div>
         <div className="SearchFilters_meta">
@@ -48,5 +61,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-
