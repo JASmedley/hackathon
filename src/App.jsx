@@ -1,65 +1,90 @@
 import React from 'react';
 import './App.css';
-import ListArticles from './ListArticles.jsx'
+import DisplayArticleCard from './DisplayArticles.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
-    console.log('In constructor');
     super(props);
     this.state = {
-      value: '',
-    }
+      text: '',
+      ListArticles: [],
+    };
+    this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=story`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          ListArticles: data.hits,
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+
+  consoleLogArticles() {
+    console.log(this.state.ListArticles);
+  }
+
+  handleSearch() {
+    this.fetchData(); // Call fetchData again when search query changes
+  }
 
   handleChange(event) {
-    this.setState({searchbar: event.target.value});
+    this.setState({
+      text: event.target.value,
+    });
   }
-
-
-  handleSubmit(event) {
-    console.log('SearchText: ' + this.state.value);
-    event.preventDefault();
-  }
-
-  // 1. Look up component lifecycle methods - use onChange instead of onKeyUp
-  // 2. capture user inputs in state 
-  // 3. Fire off fetch in useEffect everytime state updates 
-  // 4. Replicate the thing you're doing with the comment URL (dynamic URL needs to be connected to state)
 
   render() {
-    console.log('In render');
     return (
-    <div className='container'>
-      <header className="SearchHeader">
-        <a className="logo" href="https://news.ycombinator.com/" target="_self">
-        <img src="../logo.png" ></img>
-        </a>
-        <form value={this.state.value}>
-        <img className="search_icon" src="../search_icon.png" ></img>
-        <input className='searchBox' type="text"  placeholder="Search stories by title, url or author" onKeyUp={this.handleSubmit} onChange={this.handleChange}></input>
-    {/* Only need to filter in searchbox by title */}
-        </form>
-        <a href="https://hn.algolia.com/settings" target="_self">
-        <img  className="settings_icon" src="../settings_icon.png" ></img>
-        </a>
-      </header>
-      <div className="SearchFilters">
-        <div className="SearchFilters_filters">
-          <span className="SearchFilters_filterContainer"> 
-            <span className="SearchFilters_text">Search </span>
-            <div className="Dropdown"> DATE / AUTHOR / TITLE </div>
-          </span>
+      <div className='container'>
+        <header className="SearchHeader">
+          <a className="logo" href="https://news.ycombinator.com/" target="_self">
+            <img src="../logo.png" alt="Logo"></img>
+          </a>
+          <form>
+            <img className="search_icon" src="../search_icon.png" alt="Search icon"></img>
+            <input className='searchBox' onKeyUp={this.handleSearch} onChange={this.handleChange} placeholder="Search stories by title, url or author"></input>
+          </form>
+          <a href="https://hn.algolia.com/settings" target="_self">
+            <img className="settings_icon" src="../settings_icon.png" alt="Settings icon"></img>
+          </a>
+        </header>
+        <div className="SearchFilters">
+          <div className="SearchFilters_filters">
+            <span className="SearchFilters_filterContainer"> 
+              <span className="SearchFilters_text">Search </span>
+              <div className="Dropdown"> DATE / AUTHOR / TITLE </div>
+            </span>
+          </div>
+          <div className="SearchFilters_meta">
+            <p className="SearchFilters_engineProcessingTime"> PLACEHOLDER </p>
+          </div>
         </div>
-        <div className="SearchFilters_meta">
-        <p className="SearchFilters_engineProcessingTime"> PLACEHOLDER </p>
+        <ul className="SearchResults">
+          {this.state.ListArticles.map((article, index) => (
+            <DisplayArticleCard
+              key={index}
+              title={article.title}
+              url={article.url}
+              points={article.points}
+              author={article._highlightResult.author.value}
+              created={article.created_at}
+              comments={article.num_comments}
+              storyID={article.story_id}
+            />
+          ))}
+        </ul>
       </div>
-      </div>
-      <ListArticles/>
-    </div>
     );
   }
 }
