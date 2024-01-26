@@ -14,14 +14,14 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.SearchForm();
   }
 
   componentDidUpdate() {
     console.log(this.state.ListArticles);
   }
 
-  fetchData() {
+  SearchForm() {
     fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=story`)
       .then(response => response.json())
       .then(data => {
@@ -39,7 +39,7 @@ export default class App extends React.Component {
   }
 
   handleSearch() {
-    this.fetchData(); // Call fetchData again when search query changes
+    this.SearchForm(); // Call fetchData again when search query changes
   }
 
   handleChange(event) {
