@@ -17,6 +17,10 @@ export default class App extends React.Component {
     this.fetchData();
   }
 
+  componentDidUpdate() {
+    console.log(this.state.ListArticles);
+  }
+
   fetchData() {
     fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=story`)
       .then(response => response.json())
