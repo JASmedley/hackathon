@@ -22,7 +22,7 @@ export default class App extends React.Component {
   }
 
   SearchForm() {
-    fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=story`)
+    fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=${this.filteredResults()}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -40,6 +40,10 @@ export default class App extends React.Component {
 
   handleSearch() {
     this.SearchForm(); // Call fetchData again when search query changes
+  }
+
+  filteredResults(event){
+    return 'story'
   }
 
   handleChange(event) {
@@ -67,7 +71,11 @@ export default class App extends React.Component {
           <div className="SearchFilters_filters">
             <span className="SearchFilters_filterContainer"> 
               <span className="SearchFilters_text">Search </span>
-              <div className="Dropdown"> DATE / AUTHOR / TITLE </div>
+              <select  >
+                <option onChange={this.filteredResults} value="date">DATE</option>
+                <option onChange={this.filteredResults} value="author">AUTHOR</option>
+                <option onChange={this.filteredResults} value="title">TITLE</option>
+              </select>
             </span>
           </div>
           <div className="SearchFilters_meta">
