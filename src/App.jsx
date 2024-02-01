@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
-import DisplayArticleCard from './DisplayArticles.jsx';
+import React from "react";
+import "./App.css";
+import DisplayArticleCard from "./DisplayArticles.jsx";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      text: "",
       ListArticles: [],
     };
     this.handleSearch = this.handleSearch.bind(this);
@@ -14,23 +14,21 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.SearchForm();
+    this.fetchData();
   }
 
-  componentDidUpdate() {
-    console.log(this.state.ListArticles);
-  }
-
-  SearchForm() {
-    fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=${this.filteredResults()}`)
-      .then(response => response.json())
-      .then(data => {
+  fetchData() {
+    fetch(
+      `https://hn.algolia.com/api/v1/search?query=${this.state.text}&tags=story`
+    )
+      .then((response) => response.json())
+      .then((data) => {
         this.setState({
           ListArticles: data.hits,
         });
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   }
 
@@ -39,11 +37,7 @@ export default class App extends React.Component {
   }
 
   handleSearch() {
-    this.SearchForm(); // Call fetchData again when search query changes
-  }
-
-  filteredResults(event){
-    return 'story'
+    this.fetchData(); // Call fetchData again when search query changes
   }
 
   handleChange(event) {
@@ -54,28 +48,41 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className="container">
         <header className="SearchHeader">
-          <a className="logo" href="https://news.ycombinator.com/" target="_self">
+          <a
+            className="logo"
+            href="https://news.ycombinator.com/"
+            target="_self"
+          >
             <img src="../logo.png" alt="Logo"></img>
           </a>
           <form>
-            <img className="search_icon" src="../search_icon.png" alt="Search icon"></img>
-            <input className='searchBox' onKeyUp={this.handleSearch} onChange={this.handleChange} placeholder="Search stories by title, url or author"></input>
+            <img
+              className="search_icon"
+              src="../search_icon.png"
+              alt="Search icon"
+            ></img>
+            <input
+              className="searchBox"
+              onKeyUp={this.handleSearch}
+              onChange={this.handleChange}
+              placeholder="Search stories by title, url or author"
+            ></input>
           </form>
           <a href="https://hn.algolia.com/settings" target="_self">
-            <img className="settings_icon" src="../settings_icon.png" alt="Settings icon"></img>
+            <img
+              className="settings_icon"
+              src="../settings_icon.png"
+              alt="Settings icon"
+            ></img>
           </a>
         </header>
         <div className="SearchFilters">
           <div className="SearchFilters_filters">
-            <span className="SearchFilters_filterContainer"> 
+            <span className="SearchFilters_filterContainer">
               <span className="SearchFilters_text">Search </span>
-              <select  >
-                <option onChange={this.filteredResults} value="date">DATE</option>
-                <option onChange={this.filteredResults} value="author">AUTHOR</option>
-                <option onChange={this.filteredResults} value="title">TITLE</option>
-              </select>
+              <div className="Dropdown"> DATE / AUTHOR / TITLE </div>
             </span>
           </div>
           <div className="SearchFilters_meta">
